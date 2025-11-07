@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
  *
  * @author ivanc
  */
-public class SmartCalculator extends javax.swing.JFrame {
-
+public class SmartCalculator extends javax.swing.JFrame { 
+    
+    
+boolean isResultDisplayed = false;
     /**
      * Creates new form SmartCalcu
      */
@@ -37,7 +39,6 @@ public class SmartCalculator extends javax.swing.JFrame {
         btnHistory = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         panelCalculator = new javax.swing.JPanel();
-        txtDisplay = new javax.swing.JTextField();
         cardPanelCalc = new javax.swing.JPanel();
         panelStandard = new javax.swing.JPanel();
         btn7 = new javax.swing.JButton();
@@ -73,7 +74,13 @@ public class SmartCalculator extends javax.swing.JFrame {
         lblResult = new javax.swing.JLabel();
         panelTopCalc = new javax.swing.JPanel();
         comboMode = new javax.swing.JComboBox<>();
+        txtDisplay = new javax.swing.JTextField();
         panelHistory = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstHistory = new javax.swing.JList<>();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -119,10 +126,9 @@ public class SmartCalculator extends javax.swing.JFrame {
         });
         panelMenu.add(btnExit);
 
-        cardPanel.add(panelMenu, "card2");
+        cardPanel.add(panelMenu, "panelMenu");
 
         panelCalculator.setLayout(new java.awt.BorderLayout());
-        panelCalculator.add(txtDisplay, java.awt.BorderLayout.PAGE_START);
 
         cardPanelCalc.setLayout(new java.awt.CardLayout());
 
@@ -264,7 +270,7 @@ public class SmartCalculator extends javax.swing.JFrame {
         });
         panelStandard.add(btnClear);
 
-        cardPanelCalc.add(panelStandard, "card2");
+        cardPanelCalc.add(panelStandard, "panelStandard");
 
         jButton1.setText("sin");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -362,10 +368,10 @@ public class SmartCalculator extends javax.swing.JFrame {
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
-        cardPanelCalc.add(panelScientific, "card3");
+        cardPanelCalc.add(panelScientific, "panelScientific");
 
         txtValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtValue.setText("Enter Value");
@@ -418,10 +424,10 @@ public class SmartCalculator extends javax.swing.JFrame {
                     .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(btnConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
-        cardPanelCalc.add(panelConverter, "card4");
+        cardPanelCalc.add(panelConverter, "panelConverter");
 
         panelCalculator.add(cardPanelCalc, java.awt.BorderLayout.CENTER);
 
@@ -439,21 +445,31 @@ public class SmartCalculator extends javax.swing.JFrame {
         panelTopCalc.add(comboMode);
 
         panelCalculator.add(panelTopCalc, java.awt.BorderLayout.PAGE_END);
+        panelCalculator.add(txtDisplay, java.awt.BorderLayout.PAGE_START);
 
-        cardPanel.add(panelCalculator, "card3");
+        cardPanel.add(panelCalculator, "panelCalculator");
 
-        javax.swing.GroupLayout panelHistoryLayout = new javax.swing.GroupLayout(panelHistory);
-        panelHistory.setLayout(panelHistoryLayout);
-        panelHistoryLayout.setHorizontalGroup(
-            panelHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
-        );
-        panelHistoryLayout.setVerticalGroup(
-            panelHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
-        );
+        panelHistory.setLayout(new java.awt.BorderLayout());
 
-        cardPanel.add(panelHistory, "card4");
+        lstHistory.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(lstHistory);
+
+        panelHistory.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jButton9.setText("jButton9");
+        panelHistory.add(jButton9, java.awt.BorderLayout.SOUTH);
+
+        jButton10.setText("jButton10");
+        panelHistory.add(jButton10, java.awt.BorderLayout.SOUTH);
+
+        jLabel2.setText("jLabel2");
+        panelHistory.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+
+        cardPanel.add(panelHistory, "panelHistory");
 
         getContentPane().add(cardPanel, java.awt.BorderLayout.CENTER);
 
@@ -527,7 +543,7 @@ public class SmartCalculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btnSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtractActionPerformed
-        txtDisplay.setText(txtDisplay.getText() + "-");
+    txtDisplay.setText(txtDisplay.getText() + "-");
     }//GEN-LAST:event_btnSubtractActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
@@ -539,18 +555,17 @@ public class SmartCalculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDotActionPerformed
 
     private void btnEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualsActionPerformed
-        try {
-    javax.script.ScriptEngineManager mgr = new javax.script.ScriptEngineManager();
-    javax.script.ScriptEngine engine = mgr.getEngineByName("JavaScript");
-    Object res = engine.eval(txtDisplay.getText());
-    txtDisplay.setText(res.toString());
+   try {
+        String expression = txtDisplay.getText();
+        double result = evaluateExpression(expression);
+        txtDisplay.setText(String.valueOf(result));
     } catch (Exception e) {
         txtDisplay.setText("Error");
     }
     }//GEN-LAST:event_btnEqualsActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        txtDisplay.setText(txtDisplay.getText() + "+");
+     txtDisplay.setText(txtDisplay.getText() + "+");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -722,6 +737,7 @@ public class SmartCalculator extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboConvert;
     private javax.swing.JComboBox<String> comboMode;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -729,8 +745,12 @@ public class SmartCalculator extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblResult;
+    private javax.swing.JList<String> lstHistory;
     private javax.swing.JPanel panelCalculator;
     private javax.swing.JPanel panelConverter;
     private javax.swing.JPanel panelHistory;
@@ -741,4 +761,63 @@ public class SmartCalculator extends javax.swing.JFrame {
     private javax.swing.JTextField txtDisplay;
     private javax.swing.JTextField txtValue;
     // End of variables declaration//GEN-END:variables
+
+     private double evaluateExpression(String expression) {
+        expression = expression.replaceAll("\\s+", "");
+
+        char[] tokens = expression.toCharArray();
+        java.util.Stack<Double> values = new java.util.Stack<>();
+        java.util.Stack<Character> ops = new java.util.Stack<>();
+
+        for (int i = 0; i < tokens.length; i++) {
+            if (tokens[i] >= '0' && tokens[i] <= '9' || tokens[i] == '.') {
+                StringBuilder sbuf = new StringBuilder();
+                while (i < tokens.length &&
+                      ((tokens[i] >= '0' && tokens[i] <= '9') || tokens[i] == '.')) {
+                    sbuf.append(tokens[i++]);
+                }
+                values.push(Double.parseDouble(sbuf.toString()));
+                i--;
+            } else if (tokens[i] == '(') {
+                ops.push(tokens[i]);
+            } else if (tokens[i] == ')') {
+                while (ops.peek() != '(') {
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                }
+                ops.pop();
+            } else if (tokens[i] == '+' || tokens[i] == '-' || 
+                       tokens[i] == '*' || tokens[i] == '/') {
+                while (!ops.empty() && hasPrecedence(tokens[i], ops.peek())) {
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                }
+                ops.push(tokens[i]);
+            }
+        }
+
+        while (!ops.empty()) {
+            values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+        }
+
+        return values.pop();
+    }
+
+    private boolean hasPrecedence(char op1, char op2) {
+        if (op2 == '(' || op2 == ')')
+            return false;
+        return (op1 != '*' && op1 != '/') || (op2 != '+' && op2 != '-');
+    }
+
+    private double applyOp(char op, double b, double a) {
+        switch (op) {
+            case '+': return a + b;
+            case '-': return a - b;
+            case '*': return a * b;
+            case '/':
+                if (b == 0)
+                    throw new UnsupportedOperationException("Cannot divide by zero");
+                return a / b;
+        }
+        return 0;
+    }
+   
 }
