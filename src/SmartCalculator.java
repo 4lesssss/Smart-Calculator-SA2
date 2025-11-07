@@ -658,7 +658,7 @@ public class SmartCalculator extends javax.swing.JFrame {
     catch (Exception e) {
     lblResult.setText("Error");
     }//GEN-LAST:event_btnConvertActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
