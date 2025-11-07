@@ -57,6 +57,22 @@ public class SmartCalculator extends javax.swing.JFrame {
         btnEquals = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        panelScientific = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        panelConverter = new javax.swing.JPanel();
+        txtValue = new javax.swing.JTextField();
+        comboConvert = new javax.swing.JComboBox<>();
+        btnConvert = new javax.swing.JButton();
+        lblResult = new javax.swing.JLabel();
+        panelTopCalc = new javax.swing.JPanel();
+        comboMode = new javax.swing.JComboBox<>();
         panelHistory = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -250,7 +266,179 @@ public class SmartCalculator extends javax.swing.JFrame {
 
         cardPanelCalc.add(panelStandard, "card2");
 
+        jButton1.setText("sin");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("cos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("tan");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("sqrt");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("log");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("ln");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("pow");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("pi");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelScientificLayout = new javax.swing.GroupLayout(panelScientific);
+        panelScientific.setLayout(panelScientificLayout);
+        panelScientificLayout.setHorizontalGroup(
+            panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelScientificLayout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5)
+                    .addComponent(jButton1))
+                .addGap(26, 26, 26)
+                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton6))
+                .addGap(40, 40, 40)
+                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelScientificLayout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
+                    .addGroup(panelScientificLayout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8)))
+                .addGap(38, 38, 38))
+        );
+        panelScientificLayout.setVerticalGroup(
+            panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelScientificLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(133, Short.MAX_VALUE))
+        );
+
+        cardPanelCalc.add(panelScientific, "card3");
+
+        txtValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtValue.setText("Enter Value");
+        txtValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValueActionPerformed(evt);
+            }
+        });
+
+        comboConvert.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celsius to Fahrenheit", "Fahrenheit to Celsius", "Kilometers to Miles", "Miles to Kilometers" }));
+
+        btnConvert.setText("Convert");
+        btnConvert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertActionPerformed(evt);
+            }
+        });
+
+        lblResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblResult.setText("Result");
+
+        javax.swing.GroupLayout panelConverterLayout = new javax.swing.GroupLayout(panelConverter);
+        panelConverter.setLayout(panelConverterLayout);
+        panelConverterLayout.setHorizontalGroup(
+            panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConverterLayout.createSequentialGroup()
+                .addGroup(panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelConverterLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(comboConvert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelConverterLayout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(btnConvert)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConverterLayout.createSequentialGroup()
+                .addGap(0, 100, Short.MAX_VALUE)
+                .addComponent(txtValue, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
+        );
+        panelConverterLayout.setVerticalGroup(
+            panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConverterLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(comboConvert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValue, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(btnConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(193, Short.MAX_VALUE))
+        );
+
+        cardPanelCalc.add(panelConverter, "card4");
+
         panelCalculator.add(cardPanelCalc, java.awt.BorderLayout.CENTER);
+
+        comboMode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Scientific", "Coverter" }));
+        comboMode.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboModeItemStateChanged(evt);
+            }
+        });
+        comboMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboModeActionPerformed(evt);
+            }
+        });
+        panelTopCalc.add(comboMode);
+
+        panelCalculator.add(panelTopCalc, java.awt.BorderLayout.PAGE_END);
 
         cardPanel.add(panelCalculator, "card3");
 
@@ -375,6 +563,102 @@ public class SmartCalculator extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_formKeyPressed
 
+    private void comboModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModeActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout)(cardPanelCalc.getLayout());
+        String mode = (String)comboMode.getSelectedItem();
+        if ("Standard".equals(mode)) cl.show(cardPanelCalc, "panelStandard");
+        else if ("Scientific".equals(mode)) cl.show(cardPanelCalc, "panelScientific");
+        else if ("Converter".equals(mode)) cl.show(cardPanelCalc, "panelConverter");
+        
+    }//GEN-LAST:event_comboModeActionPerformed
+
+    private void comboModeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboModeItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboModeItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        double val = Double.parseDouble(txtDisplay.getText());
+        double res = Math.sin(Math.toRadians(val));
+        txtDisplay.setText(String.valueOf(res));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        double val = Double.parseDouble(txtDisplay.getText());
+        double res = Math.cos(Math.toRadians(val));
+        txtDisplay.setText(String.valueOf(res));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        double val = Double.parseDouble(txtDisplay.getText());
+        double res = Math.tan(Math.toRadians(val));
+        txtDisplay.setText(String.valueOf(res));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        double val = Double.parseDouble(txtDisplay.getText());
+        double res = Math.sqrt(val);
+        txtDisplay.setText(String.valueOf(res));
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        double val = Double.parseDouble(txtDisplay.getText());
+        double res = Math.log10(val);
+        txtDisplay.setText(String.valueOf(res));
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        double val = Double.parseDouble(txtDisplay.getText());
+        double res = Math.log(val);
+        txtDisplay.setText(String.valueOf(res));
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        double base = Double.parseDouble(txtDisplay.getText());
+        double exp = Double.parseDouble(JOptionPane.showInputDialog("Enter exponent:"));
+        double res = Math.pow(base, exp);
+        txtDisplay.setText(String.valueOf(res));
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        double val = Double.parseDouble(txtDisplay.getText());
+        double res = val * Math.PI;
+        txtDisplay.setText(String.valueOf(res));
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void txtValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValueActionPerformed
+
+    private void btnConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertActionPerformed
+        // TODO add your handling code here:
+        try {
+    double v = Double.parseDouble(txtValue.getText());
+    String mode = (String)comboConvert.getSelectedItem();
+    double res = 0;
+    if ("C→F".equals(mode)) res = v * 9/5 + 32;
+    else if ("F→C".equals(mode)) res = (v - 32) * 5/9;
+    else if ("km→miles".equals(mode)) res = v * 0.621371;
+    else if ("miles→km".equals(mode)) res = v / 0.621371;
+    lblResult.setText(String.valueOf(res));
+    } 
+    catch (Exception e) {
+    lblResult.setText("Error");
+    }//GEN-LAST:event_btnConvertActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,6 +708,7 @@ public class SmartCalculator extends javax.swing.JFrame {
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnConvert;
     private javax.swing.JButton btnDivide;
     private javax.swing.JButton btnDot;
     private javax.swing.JButton btnEquals;
@@ -434,11 +719,26 @@ public class SmartCalculator extends javax.swing.JFrame {
     private javax.swing.JButton btnSubtract;
     private javax.swing.JPanel cardPanel;
     private javax.swing.JPanel cardPanelCalc;
+    private javax.swing.JComboBox<String> comboConvert;
+    private javax.swing.JComboBox<String> comboMode;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblResult;
     private javax.swing.JPanel panelCalculator;
+    private javax.swing.JPanel panelConverter;
     private javax.swing.JPanel panelHistory;
     private javax.swing.JPanel panelMenu;
+    private javax.swing.JPanel panelScientific;
     private javax.swing.JPanel panelStandard;
+    private javax.swing.JPanel panelTopCalc;
     private javax.swing.JTextField txtDisplay;
+    private javax.swing.JTextField txtValue;
     // End of variables declaration//GEN-END:variables
 }
