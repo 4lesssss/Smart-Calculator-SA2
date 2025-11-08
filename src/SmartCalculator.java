@@ -24,6 +24,57 @@ boolean isResultDisplayed = false;
      */
     public SmartCalculator() {
         initComponents();
+     
+     java.awt.event.MouseAdapter hoverEffect = new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            ((javax.swing.JButton) evt.getSource()).setBackground(java.awt.Color.CYAN);
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            ((javax.swing.JButton) evt.getSource()).setBackground(null);
+        }
+    };
+
+    // 🔹 MENU BUTTONS
+    btnOpenCalc.addMouseListener(hoverEffect);
+    btnHistory.addMouseListener(hoverEffect);
+    btnExit.addMouseListener(hoverEffect);
+
+    // 🔹 STANDARD CALCULATOR BUTTONS (Numbers + Operations)
+    btn0.addMouseListener(hoverEffect);
+    btn1.addMouseListener(hoverEffect);
+    btn2.addMouseListener(hoverEffect);
+    btn3.addMouseListener(hoverEffect);
+    btn4.addMouseListener(hoverEffect);
+    btn5.addMouseListener(hoverEffect);
+    btn6.addMouseListener(hoverEffect);
+    btn7.addMouseListener(hoverEffect);
+    btn8.addMouseListener(hoverEffect);
+    btn9.addMouseListener(hoverEffect);
+    btnAdd.addMouseListener(hoverEffect);
+    btnSubtract.addMouseListener(hoverEffect);
+    btnMultiply.addMouseListener(hoverEffect);
+    btnDivide.addMouseListener(hoverEffect);
+    btnDot.addMouseListener(hoverEffect);
+    btnEquals.addMouseListener(hoverEffect);
+    btnClear.addMouseListener(hoverEffect);
+
+    // 🔹 SCIENTIFIC MODE BUTTONS
+    jButton1.addMouseListener(hoverEffect);
+    jButton2.addMouseListener(hoverEffect);
+    jButton3.addMouseListener(hoverEffect);
+    jButton4.addMouseListener(hoverEffect);
+    jButton5.addMouseListener(hoverEffect);
+    jButton6.addMouseListener(hoverEffect);
+    jButton7.addMouseListener(hoverEffect);
+    jButton8.addMouseListener(hoverEffect);
+
+    // 🔹 CONVERTER + NAVIGATION BUTTONS
+    btnConvert.addMouseListener(hoverEffect);
+    jButton10.addMouseListener(hoverEffect); // Back in History
+    jButton11.addMouseListener(hoverEffect);
     }
 
     /**
@@ -73,10 +124,10 @@ boolean isResultDisplayed = false;
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         panelConverter = new javax.swing.JPanel();
-        txtValue = new javax.swing.JTextField();
         comboConvert = new javax.swing.JComboBox<>();
-        btnConvert = new javax.swing.JButton();
+        txtValue = new javax.swing.JTextField();
         lblResult = new javax.swing.JLabel();
+        btnConvert = new javax.swing.JButton();
         panelTopCalc = new javax.swing.JPanel();
         comboMode = new javax.swing.JComboBox<>();
         jButton11 = new javax.swing.JButton();
@@ -105,7 +156,6 @@ boolean isResultDisplayed = false;
                 formKeyPressed(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         cardPanel.setLayout(new java.awt.CardLayout());
 
@@ -123,7 +173,7 @@ boolean isResultDisplayed = false;
         });
         panelMenu.add(btnOpenCalc);
 
-        btnHistory.setText("History / Settings");
+        btnHistory.setText("History ");
         btnHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistoryActionPerformed(evt);
@@ -295,12 +345,15 @@ boolean isResultDisplayed = false;
 
         cardPanelCalc.add(panelStandard, "panelStandard");
 
+        panelScientific.setLayout(new java.awt.GridLayout(3, 3));
+
         jButton1.setText("sin");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        panelScientific.add(jButton1);
 
         jButton2.setText("cos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -308,6 +361,7 @@ boolean isResultDisplayed = false;
                 jButton2ActionPerformed(evt);
             }
         });
+        panelScientific.add(jButton2);
 
         jButton3.setText("tan");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -315,6 +369,7 @@ boolean isResultDisplayed = false;
                 jButton3ActionPerformed(evt);
             }
         });
+        panelScientific.add(jButton3);
 
         jButton4.setText("sqrt");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -322,6 +377,7 @@ boolean isResultDisplayed = false;
                 jButton4ActionPerformed(evt);
             }
         });
+        panelScientific.add(jButton4);
 
         jButton5.setText("log");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -329,6 +385,7 @@ boolean isResultDisplayed = false;
                 jButton5ActionPerformed(evt);
             }
         });
+        panelScientific.add(jButton5);
 
         jButton6.setText("ln");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -336,6 +393,7 @@ boolean isResultDisplayed = false;
                 jButton6ActionPerformed(evt);
             }
         });
+        panelScientific.add(jButton6);
 
         jButton7.setText("pow");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -343,6 +401,7 @@ boolean isResultDisplayed = false;
                 jButton7ActionPerformed(evt);
             }
         });
+        panelScientific.add(jButton7);
 
         jButton8.setText("pi");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -350,61 +409,31 @@ boolean isResultDisplayed = false;
                 jButton8ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout panelScientificLayout = new javax.swing.GroupLayout(panelScientific);
-        panelScientific.setLayout(panelScientificLayout);
-        panelScientificLayout.setHorizontalGroup(
-            panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelScientificLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton1))
-                .addGap(26, 26, 26)
-                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton6))
-                .addGap(40, 40, 40)
-                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelScientificLayout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4))
-                    .addGroup(panelScientificLayout.createSequentialGroup()
-                        .addComponent(jButton7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton8)))
-                .addGap(38, 38, 38))
-        );
-        panelScientificLayout.setVerticalGroup(
-            panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelScientificLayout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelScientificLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(202, Short.MAX_VALUE))
-        );
+        panelScientific.add(jButton8);
 
         cardPanelCalc.add(panelScientific, "panelScientific");
 
+        panelConverter.setLayout(new java.awt.GridLayout(8, 3));
+
+        comboConvert.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C→F", "F→C", "km→miles", "miles→km" }));
+        comboConvert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboConvertActionPerformed(evt);
+            }
+        });
+        panelConverter.add(comboConvert);
+
         txtValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtValue.setText("Enter Value");
         txtValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtValueActionPerformed(evt);
             }
         });
+        panelConverter.add(txtValue);
 
-        comboConvert.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celsius to Fahrenheit", "Fahrenheit to Celsius", "Kilometers to Miles", "Miles to Kilometers" }));
+        lblResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblResult.setText("Result");
+        panelConverter.add(lblResult);
 
         btnConvert.setText("Convert");
         btnConvert.addActionListener(new java.awt.event.ActionListener() {
@@ -412,49 +441,13 @@ boolean isResultDisplayed = false;
                 btnConvertActionPerformed(evt);
             }
         });
-
-        lblResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblResult.setText("Result");
-
-        javax.swing.GroupLayout panelConverterLayout = new javax.swing.GroupLayout(panelConverter);
-        panelConverter.setLayout(panelConverterLayout);
-        panelConverterLayout.setHorizontalGroup(
-            panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelConverterLayout.createSequentialGroup()
-                .addGroup(panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelConverterLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(comboConvert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelConverterLayout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(btnConvert)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConverterLayout.createSequentialGroup()
-                .addGap(0, 100, Short.MAX_VALUE)
-                .addComponent(txtValue, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
-        );
-        panelConverterLayout.setVerticalGroup(
-            panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelConverterLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(comboConvert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(panelConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValue, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
-        );
+        panelConverter.add(btnConvert);
 
         cardPanelCalc.add(panelConverter, "panelConverter");
 
         panelCalculator.add(cardPanelCalc, java.awt.BorderLayout.CENTER);
 
-        comboMode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Scientific", "Coverter" }));
+        comboMode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Scientific", "Converter" }));
         comboMode.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboModeItemStateChanged(evt);
@@ -476,6 +469,12 @@ boolean isResultDisplayed = false;
         panelTopCalc.add(jButton11);
 
         panelCalculator.add(panelTopCalc, java.awt.BorderLayout.PAGE_END);
+
+        txtDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDisplayActionPerformed(evt);
+            }
+        });
         panelCalculator.add(txtDisplay, java.awt.BorderLayout.PAGE_START);
 
         cardPanel.add(panelCalculator, "panelCalculator");
@@ -499,6 +498,7 @@ boolean isResultDisplayed = false;
 
         jTextField1.setEditable(false);
         jTextField1.setColumns(10);
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField1.setAlignmentY(10.0F);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -745,6 +745,14 @@ jTextField1.setText(calcHistory.toString());
         txtDisplay.setText(txtDisplay.getText() + "1");
     }
     }//GEN-LAST:event_btn1KeyPressed
+
+    private void comboConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboConvertActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboConvertActionPerformed
+
+    private void txtDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDisplayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDisplayActionPerformed
     
     /** 
      * @param args the command line arguments
