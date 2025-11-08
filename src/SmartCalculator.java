@@ -3,6 +3,7 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -13,6 +14,8 @@ import javax.swing.JOptionPane;
  * @author ivanc
  */
 public class SmartCalculator extends javax.swing.JFrame { 
+private StringBuilder calcHistory = new StringBuilder();
+String lastCalculation = "";
     
     
 boolean isResultDisplayed = false;
@@ -32,6 +35,8 @@ boolean isResultDisplayed = false;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         cardPanel = new javax.swing.JPanel();
         panelMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -74,13 +79,20 @@ boolean isResultDisplayed = false;
         lblResult = new javax.swing.JLabel();
         panelTopCalc = new javax.swing.JPanel();
         comboMode = new javax.swing.JComboBox<>();
+        jButton11 = new javax.swing.JButton();
         txtDisplay = new javax.swing.JTextField();
         panelHistory = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstHistory = new javax.swing.JList<>();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -93,6 +105,7 @@ boolean isResultDisplayed = false;
                 formKeyPressed(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         cardPanel.setLayout(new java.awt.CardLayout());
 
@@ -180,6 +193,11 @@ boolean isResultDisplayed = false;
                 btn5ActionPerformed(evt);
             }
         });
+        btn5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn5KeyPressed(evt);
+            }
+        });
         panelStandard.add(btn5);
 
         btn6.setText("6");
@@ -202,6 +220,11 @@ boolean isResultDisplayed = false;
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1ActionPerformed(evt);
+            }
+        });
+        btn1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn1KeyPressed(evt);
             }
         });
         panelStandard.add(btn1);
@@ -368,7 +391,7 @@ boolean isResultDisplayed = false;
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         cardPanelCalc.add(panelScientific, "panelScientific");
@@ -424,7 +447,7 @@ boolean isResultDisplayed = false;
                     .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(btnConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         cardPanelCalc.add(panelConverter, "panelConverter");
@@ -444,30 +467,46 @@ boolean isResultDisplayed = false;
         });
         panelTopCalc.add(comboMode);
 
+        jButton11.setText("back");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        panelTopCalc.add(jButton11);
+
         panelCalculator.add(panelTopCalc, java.awt.BorderLayout.PAGE_END);
         panelCalculator.add(txtDisplay, java.awt.BorderLayout.PAGE_START);
 
         cardPanel.add(panelCalculator, "panelCalculator");
 
+        panelHistory.setToolTipText("");
         panelHistory.setLayout(new java.awt.BorderLayout());
-
-        lstHistory.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(lstHistory);
-
-        panelHistory.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jButton9.setText("jButton9");
         panelHistory.add(jButton9, java.awt.BorderLayout.SOUTH);
 
-        jButton10.setText("jButton10");
+        jButton10.setText("Back");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         panelHistory.add(jButton10, java.awt.BorderLayout.SOUTH);
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("History");
         panelHistory.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+
+        jTextField1.setEditable(false);
+        jTextField1.setColumns(10);
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField1.setAlignmentY(10.0F);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        panelHistory.add(jTextField1, java.awt.BorderLayout.CENTER);
 
         cardPanel.add(panelHistory, "panelHistory");
 
@@ -482,8 +521,9 @@ boolean isResultDisplayed = false;
     }//GEN-LAST:event_btnOpenCalcActionPerformed
 
     private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
-    CardLayout cl = (CardLayout)(cardPanel.getLayout());
-    cl.show(cardPanel, "panelHistory");    // TODO add your handling code here:
+ CardLayout layout = (CardLayout) cardPanel.getLayout();
+layout.show(cardPanel, "panelHistory");
+jTextField1.setText(lastCalculation);
     }//GEN-LAST:event_btnHistoryActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -555,10 +595,15 @@ boolean isResultDisplayed = false;
     }//GEN-LAST:event_btnDotActionPerformed
 
     private void btnEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualsActionPerformed
-   try {
+try {
         String expression = txtDisplay.getText();
         double result = evaluateExpression(expression);
         txtDisplay.setText(String.valueOf(result));
+
+        // Show the latest calculation in jTextField1
+        jTextField1.setText(expression + " = " + result);
+        lastCalculation = expression + " = " + result;
+
     } catch (Exception e) {
         txtDisplay.setText("Error");
     }
@@ -660,7 +705,7 @@ boolean isResultDisplayed = false;
 
     private void btnConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertActionPerformed
         // TODO add your handling code here:
-        try {
+
     double v = Double.parseDouble(txtValue.getText());
     String mode = (String)comboConvert.getSelectedItem();
     double res = 0;
@@ -669,12 +714,39 @@ boolean isResultDisplayed = false;
     else if ("km→miles".equals(mode)) res = v * 0.621371;
     else if ("miles→km".equals(mode)) res = v / 0.621371;
     lblResult.setText(String.valueOf(res));
-    } 
-    catch (Exception e) {
-    lblResult.setText("Error");
+
     }//GEN-LAST:event_btnConvertActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    java.awt.CardLayout layout = (java.awt.CardLayout) cardPanel.getLayout();
+    layout.show(cardPanel, "panelMenu");
+
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    java.awt.CardLayout layout = (java.awt.CardLayout) cardPanel.getLayout();
+    layout.show(cardPanel, "panelMenu");
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+     java.awt.CardLayout layout = (java.awt.CardLayout) cardPanel.getLayout();
+layout.show(cardPanel, "panelHistory");
+
+// update the textarea with the saved history
+jTextField1.setText(calcHistory.toString());
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void btn5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn5KeyPressed
+
+    private void btn1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn1KeyPressed
+        if (evt.getKeyChar() == '1') {
+        txtDisplay.setText(txtDisplay.getText() + "1");
     }
-    /**
+    }//GEN-LAST:event_btn1KeyPressed
+    
+    /** 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -738,6 +810,7 @@ boolean isResultDisplayed = false;
     private javax.swing.JComboBox<String> comboMode;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -748,9 +821,10 @@ boolean isResultDisplayed = false;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblResult;
-    private javax.swing.JList<String> lstHistory;
     private javax.swing.JPanel panelCalculator;
     private javax.swing.JPanel panelConverter;
     private javax.swing.JPanel panelHistory;
